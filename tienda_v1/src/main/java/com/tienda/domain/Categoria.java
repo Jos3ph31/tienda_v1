@@ -1,4 +1,5 @@
 package com.tienda.domain;
+
 import jakarta.persistence.*;
 import java.io.Serializable;
 import lombok.Data;
@@ -7,23 +8,21 @@ import lombok.Data;
 @Entity
 @Table(name = "categoria")
 
-/* Serialización va a almacenar datos */
-public class Categoria implements Serializable {
+public class Categoria implements Serializable{
     
-    private static final long serialVersionUID = 1L; /*Para poder hacer el ciclo de la sumatoria de la categoria (AUTO_INCREMENT)*/
+    private static final long serialVersionUID = 1L; /* PARA HACER LA SUMATORIA DE AUTOINCREMENT */
     
-    @Id /*Id es la llave de la tabla categoría*/
+    @Id /* Id es la llave de la tabla categoria*/
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_categoria")
     private long idCategoria;
     private String descripcion;
     private String rutaImagen;
-    private boolean activo; 
+    private boolean activo;
     
     public Categoria(){
-        
     }
-    
+
     public Categoria(String descripcion, boolean activo) {
         this.descripcion = descripcion;
         this.activo = activo;
