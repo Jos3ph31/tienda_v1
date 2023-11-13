@@ -2,35 +2,30 @@ package com.tienda.domain;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "producto")
-
+@Table(name="producto")
 public class Producto implements Serializable {
-
     private static final long serialVersionUID = 1L;
-    /* PARA HACER LA SUMATORIA DE AUTOINCREMENT */
-
+    
     @Id
-    /* Id es la llave de la tabla producto*/
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_producto") //Decir cual es el nombre de la columna en la base de datos
-    private long idProducto;
+    @Column(name="id_producto")
+    private Long idProducto;
+    //private Long idCategoria;  ya no se usa por el @manyToOne
     private String descripcion;
+    private String detalle;
+    private double precio;
+    private int existencias;
     private String rutaImagen;
     private boolean activo;
 
-    //private long idCategoria;
-    private String detalle;
-    private int existencias;
-    private double precio;
+    @ManyToOne
+    @JoinColumn(name="id_categoria")
+    Categoria categoria;
 
-    @OneToMany
-    @JoinColumn(name="id_categoria", updatable=false)
-    List<Producto> productos;
 
     public Producto() {
     }
@@ -39,5 +34,5 @@ public class Producto implements Serializable {
         this.descripcion = descripcion;
         this.activo = activo;
     }
-
+    
 }
